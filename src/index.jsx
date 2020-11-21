@@ -10,6 +10,7 @@ const App = () => {
       <div className="container">
         {jokes.map((joke) => (
           <Joke
+            key={joke.id}
             userID={joke.id}
             userName={joke.name}
             text={joke.text}
