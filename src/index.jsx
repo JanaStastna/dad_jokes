@@ -1,60 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import './index.html';
 import './style.css';
+import { Joke } from './Joke/index.jsx';
 
 const App = () => {
-  const [upLikes, setUpLikes] = useState(0);
-  const [downLikes, setDownLikes] = useState(0);
-
   return (
     <>
       <div className="container">
-        <div className="joke">
-          <div className="joke__body">
-            <div className="joke__user">
-              <img className="user-avatar" src="assets/img/user01.png" />
-              <p className="user-name">Neroxx</p>
-            </div>
-
-            <p className="joke__text">
-              The secret service isn't allowed to yell "Get down!" anymore when
-              the president is about to be attacked. Now they have to yell
-              "Donald, duck!"
-            </p>
-          </div>
-          <div className="joke__likes">
-            <button
-              id="btn-up"
-              className="btn-like btn-like--up"
-              onClick={() => {
-                setUpLikes(upLikes + 1);
-              }}
-            ></button>
-            <span id="likes-up" className="likes-count likes-count--up">
-              {upLikes}
-            </span>
-            <button
-              id="btn-down"
-              className="btn-like btn-like--down"
-              onClick={() => {
-                setDownLikes(downLikes + 1);
-              }}
-            ></button>
-            <span id="likes-down" className="likes-count likes-count--down">
-              {downLikes}
-            </span>
-          </div>
-        </div>
+        {jokes.map((joke) => (
+          <Joke
+            userID={joke.id}
+            userName={joke.name}
+            text={joke.text}
+            likes={joke.likes}
+            dislikes={joke.dislikes}
+          />
+        ))}
       </div>
     </>
   );
 };
 
-render(<App />, document.querySelector('#app'));
-
-
-/*export const jokes = [
+export const jokes = [
   {
     id: 'user01',
     name: 'Neroxx',
@@ -128,4 +96,5 @@ render(<App />, document.querySelector('#app'));
     dislikes: 9,
   },
 ];
-*/
+
+render(<App />, document.querySelector('#app'));
